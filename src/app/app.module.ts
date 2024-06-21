@@ -28,6 +28,11 @@ import { ComisionesPipe } from './pipes/comisiones.pipe';
 import { RecetasComponent } from './rest/recetas/recetas.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PaisesComponent } from './rest/paises/paises.component';
+import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AppRoutingModule } from './app-routing.module';
+import { NavbarComponent } from './navbar/navbar.component';
+import { GiphyComponent } from './rest/giphy/giphy.component';
 
 // Registro los idiomas importados
 registerLocaleData(localeEs);
@@ -51,12 +56,17 @@ registerLocaleData(localeFr);
     DistanciasPipe,
     ComisionesPipe,
     RecetasComponent,
-    PaisesComponent
+    PaisesComponent,
+    HomeComponent,
+    NotFoundComponent,
+    NavbarComponent,
+    GiphyComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es' }], // Configuramos el idioma por defecto de la app
   bootstrap: [AppComponent]

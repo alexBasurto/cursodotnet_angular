@@ -3,7 +3,9 @@
     <div class="form-group">
         <div class="form-group">
             <label for="continente">Continente</label>
+
             <input type="text" class="form-control" id="continente" name="continente" [(ngModel)]="continenteSeleccionado" required #continente="ngModel">
+            
             <div *ngIf="continente.invalid && continente.touched" class="text-danger">
                 El continente es obligatorio
             </div>

@@ -39,6 +39,7 @@ export class RecetasComponent implements OnInit {
       },
       error: (err) => console.log(err),
       complete: () => console.log('ok')
+      
     });
   }
 

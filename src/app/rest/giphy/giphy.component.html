@@ -1,0 +1,27 @@
+<h1>Gifs Locos</h1>
+
+<form #formulario="ngForm" (submit)="getGifs()" class="mb-4">
+    <div class="form-group">
+        <div class="form-group">
+            <label for="busqueda">Búsqueda por palabra:</label>
+
+            <input type="text" class="form-control" name="busqueda" id="busqueda" [(ngModel)]="txtBuscar" required #busqueda="ngModel">
+
+            <div *ngIf="busqueda.invalid && busqueda.touched" class="text-danger">
+                Es obligatorio introducir alguna búsqueda.
+            </div>
+            <label for="limit">Número de gifs</label>
+            <input type="number" class="form-control" name="limit" id="limit" [(ngModel)]="limite" required #limit="ngModel">
+        </div>
+        <label for="gifs">Gifs:</label>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">Aceptar</button>
+</form>
+
+<div class="row">
+    <div class="col mb-4" *ngFor="let gif of gifs">
+        <div class="card bg-secondary" style="width: 18rem; height: 18rem; overflow: hidden;">
+            <img [src]="gif.images.downsized_medium.url">
+        </div>
+    </div>
+</div>
