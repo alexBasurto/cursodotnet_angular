@@ -1,0 +1,13 @@
+<div class="d-flex flex-wrap m-5">
+    <div class="card m-2" style="width: 18rem;" *ngFor="let persona of personas">
+      <img class="card-img-top" [src]="persona.avatar" alt="Avatar de la persona">
+      <div class="card-body">
+        <h5 class="card-title">{{persona.nombre}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{persona.apellido}}</h6>
+        <p class="card-text">{{persona.ciudad}}</p>
+        <a [href]="persona.email" class="card-link">{{persona.email}}</a>
+        <p class="card-text">{{persona.sueldo}}</p>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,100 @@
+<p>directivas works!</p>
+<h1>Directivas estructurales</h1>
+<h2>*ngIf</h2>
+<p>*ngIf nos permite crear/destruir elementos del DOM de acuerdo a una o varias condiciones</p>
+<input type="number" [(ngModel)]="calificacion" min="0" max="10">
+<p *ngIf="calificacion>=5">Has aprobado</p>
+<p *ngIf="calificacion<5">Has suspendido</p>
+
+<div *ngIf="calificacion>=5">
+  <p>¡¡Aprobado!!</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Green-Up-Arrow.svg/1200px-Green-Up-Arrow.svg.png"
+    alt="aprobado" />
+</div>
+
+<div *ngIf="calificacion<5">
+  <p>¡¡Suspenso!!</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Red_Arrow_Down.svg/1200px-Red_Arrow_Down.svg.png"
+    alt="suspenso" />
+</div>
+
+<div *ngIf="calificacion>=5; then plantillaAprobado; else plantillaSuspenso"></div>
+<ng-template #plantillaAprobado>
+  <p>¡¡Aprobado!!</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Green-Up-Arrow.svg/1200px-Green-Up-Arrow.svg.png"
+    alt="suspenso" />
+</ng-template>
+<ng-template #plantillaSuspenso>
+  <p>¡¡Suspenso!!</p>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Red_Arrow_Down.svg/1200px-Red_Arrow_Down.svg.png"
+    alt="aprobado" />
+</ng-template>
+<p>Ventas</p>
+<input type="number" [(ngModel)]="ventas" min="0">
+<p *ngIf="ventas<1000"></p>
+<p *ngIf="ventas>1000 && ventas<2000">{{ventas*.1}}</p>
+<p *ngIf="ventas>=2000">{{ventas*.2}}</p>
+
+<p><label for="number">Introduce tu edad</label></p>
+<input type="number" name="number" [(ngModel)]="age">
+<div *ngIf=" age && age>=65">
+  <p>Jubilado</p>
+  <img src="https://media.tenor.com/u9x4r0_oMe4AAAAe/old-man-grandpa.png" alt="" srcset="">
+</div>
+<div *ngIf=" age && age<65">
+  <p>No jubilado</p>
+  <img src="https://www.safetyandhealthmagazine.com/ext/resources/images/news/construction/older-male-construction-worker.jpg?t=1698244045&width=768" alt="" srcset="">
+</div>
+
+<hr>
+
+<h2>*ngFor</h2>
+<p>*ngFor va a permitirnos iterar un array y por cada item crear un elemento HTML</p>
+<p>Receta de tortilla</p>
+<ul>
+  <li *ngFor="let ingrediente of ingredientes">{{ingrediente}}</li>
+</ul>
+<input type="text" [(ngModel)]="otroIngrediente" />
+<button type="button" (click)="agregarIngrediente()">Agregar ingrediente</button>
+<p>Galería de imágenes</p>
+<div class="row">
+  <div class="col-4" *ngFor="let imagen of imagenes">
+    <img [src]="imagen" class="img-fluid" />
+  </div>
+</div>
+<br />
+<input type="text" [(ngModel)]="otraImagen" />
+<button type="button" (click)="agregarImagen()">Agregar imagen</button>
+
+<table class="table" aria-label="tabla alumnos">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Asignatura</th>
+        <th scope="col">Nota</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alumno of alumnos">
+        <td scope="row">{{alumno.nombre}}</td>
+        <td scope="row">{{alumno.asignatura}}</td>
+        <td scope="row">{{alumno.nota}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>*ngSwitch</h2>
+<p>ngSwitch es similar al bloque switch de JavaScript. La idea es plantear una condición y
+  formar un conjunto de casos. Cada caso nos permitirá crear/destruir elementos del DOM
+</p>
+<input type="text" [(ngModel)]="color">
+<div [ngSwitch]="color">
+  <img *ngSwitchCase="'rojo'"
+    src="https://t4.ftcdn.net/jpg/04/97/46/61/360_F_497466151_xNOUsRtjWIoG1O1zd98UNr2eR7RFamOj.jpg" alt="rojo" />
+  <img *ngSwitchCase="'azul'"
+    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAQlBMVEUATP////8AAABhYWEAT/9dXV3m5ubr6+vX19f19fXv7+/4+PjMzMzU1NTR0dHJycmMjIwAU//e3t7Dw8O9vb2wsLB9sNn1AAACN0lEQVR4nO3T6YrbQBBF4anYqt602C3n/V81LcZD/iSBkQlzazgHJLRQ0B8tvdl37+2rF/DfQxg/hPFDGD+E8UMYP4TxQxg/hPFDGD+E8UMYP4Tx+4fwNl2iNN1OCacfcZpOCS9fvexPdEH4V+H9qt/9JeH1Tb8rQoTyIUSoH0KE+iFEqB9ChPohRKgfQoT6IUSoH0KE+iFEqB9ChPohRKgfQoT6IUSoH0KE+iFEqB9ChPohRKgfQoT6IUSoH0KE+iFEqB9ChPohRKgfQoT6IUSoH0KE+iFEqB9ChPohRKgfQoT6IUSoH0KE+iFEqB9ChPohRKgfQoT6IUSoH0KE+iFEqB9ChPohRKgfQoT6IUSoH0KE+iFEqB9ChPohRKgfQoT6IUSoH0KE+iFEqB9ChPohRKjfa8L7Vb/7S8IoIfxz01cv+xNNp4S36RKl6XZK+E1CGD+E8UMYP4TxQxg/hDp5zvXMXBjhkrz3bmtera65lm2r3dI8V6+WiiW31s1qyuNIJeflYzCKsPjixbLt1jZ3s7kdxzZe5N0Gct6trGapb222Xvffk1GE3Y5F12Ppu2+5lUe3uSxWbamL1+K5PIUPO4S5f0yGEbZDmN6FfjzxvA6TL9mWXMbHu7Z3ofeYezg2bFvGB/hIq/vqdS5pmW2uZR0/3M86cHsZdO+7ZR9C9/YcDCMsc+/j56upWUupWncrYyP7cW5lcNp4nFobt3Wcx+VzMIxwGMupsUDCkyGMH8L4fX/hL3UJfLFK0R7PAAAAAElFTkSuQmCC"
+    alt="azul" />
+  <img *ngSwitchCase="'verde'"
+    src="https://www.nicepng.com/png/detail/804-8040064_green-square-png-aqua-green-color.png" alt="verde" />
+  <p *ngSwitchDefault>No tengo más colores</p>
+</div>

@@ -1,0 +1,70 @@
+<p>Metros: {{metros}}</p>
+<p>Metros a kilómetros utilizando el pipe distancias: {{metros | distancias }} kms.</p>
+<p>Metros a kilómetros utilizando el pipe distancias encadenando después el pipe Angular de dos decimales: {{metros | distancias | number:'1.1-2'}} kms.</p>
+
+<hr>
+
+<p>Tamaño del archivo en bytes: {{sizeFile}} B</p>
+<p>Tamaño del archivo en kilobytes: {{sizeFile | almacenamientoArchivos }} KB</p>
+<p>Tamaño del archivo en kilobytes, pasando por un segundo pipe para dar solo 2 decimales: {{sizeFile | almacenamientoArchivos | number: '1.1-2'}} KB</p>
+
+<hr>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Origen</th>
+        <th scope="col">Destino</th>
+        <th scope="col">Distancia en metros</th>
+        <th scope="col">Distancia en km</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let distancia of distanciasEntreCiudades">
+        <td>{{distancia.origen}}</td>
+        <td>{{distancia.destino}}</td>
+        <td>{{distancia.distancia}}</td>
+        <td>{{distancia.distancia | distancias}}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nombre archivo</th>
+        <th scope="col">Bytes</th>
+        <th scope="col">Kilobytes</th>
+        <th scope="col">Megabytes</th>
+        <th scope="col">GigaBytes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let archivo of archivos">
+        <th scope="row">{{ archivo.nombre }}</th>
+        <td>{{ archivo.size }}</td>
+        <td>{{ archivo.size | almacenamientoArchivos | number: '1.2-2' }}</td>
+        <td>{{ archivo.size | almacenamientoArchivosMultiple: 'MB'  | number: '1.2-2' }}</td>
+        <td>{{ archivo.size | almacenamientoArchivosMultiple: 'GB'  | number: '1.2-2' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <hr>
+
+  <table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nombre comercial</th>
+            <th scope="col">Ventas junio '24</th>
+            <th scope="col">Comisión junio</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let comercial of comerciales">
+            <th scope="row">{{ comercial.nombre }}</th>
+            <td>{{ comercial.ventas | number: '1.2-2'}} €</td>
+            <td>{{ comercial.ventas | comisiones | number: '1.2-2' }} €</td>
+        </tr>
+    </tbody>
+  </table>

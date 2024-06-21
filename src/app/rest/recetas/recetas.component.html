@@ -1,0 +1,45 @@
+<form #formulario="ngForm" (submit)="getRecetas()">
+    <!-- <div class="form-group">
+      <div class="form-group">
+        <label for="categoria">Categoría</label>
+        <input type="text" class="form-control" id="categoria" name="categoria" [(ngModel)]="categoriaSeleccionada"
+          required #categoria="ngModel" />
+        <div *ngIf="categoria.invalid && categoria.touched" class="text-danger">
+          La categoría es obligatoria
+        </div>
+      </div>
+    </div> -->
+
+    <div class="form-group">
+      <label for="comidas">Caregoria:</label>
+      <select id="categoria" name="categoria" class="form-select" [(ngModel)]="categoriaSeleccionada" required
+        #comidas="ngModel">
+        <option *ngFor="let categoria of categorias.meals" [value]="categoria.strCategory">{{categoria.strCategory}}
+        </option>
+      </select>
+      <div *ngIf="comidas.invalid && comidas.touched" class="text-danger">
+        La categoría es obligatoria
+      </div>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">
+      Aceptar
+    </button>
+  </form>
+  <div class="row">
+    <div class="col" *ngFor="let comida of recetario.meals">
+      <div class="card" style="width: 18rem">
+        <img class="card-img-top" [src]="comida.strMealThumb" [alt]="comida.strMeal" />
+        <div class="card-body">
+          <h5 class="card-title">{{ comida.strMeal }}</h5>
+          <p class="card-text">{{ comida.strMeal }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="mostrarError">
+    No se ha podido acceder a la información de recetas
+  </div>
+  

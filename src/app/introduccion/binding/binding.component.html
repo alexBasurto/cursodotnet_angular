@@ -1,0 +1,59 @@
+<h1>Técnicas binding</h1>
+<h2>Interpolación</h2>
+<p>Si tenemos una propiedad en el archivo .ts del componente, le podemos dar salida con las dobles llaves. También permite operaciones</p>
+<p>Me llamo: {{nombre}}</p>
+<p>{{n1*n2}}</p>
+<button (click)="cambiarNombre()">Cambiar nombre</button>
+<p>La interpolación también puede afectar a las propiedades html que conocemos. En este ejemplo, vamos a poner una
+  imagen
+  mediante una propiedad cuyo valor va a estar gestionado por el archivo TypeScript </p>
+<img id="imagen1" src="{{logo}}" alt="logo de Lego" [class.circular]="logoCircular" />
+<p>Pero si queremos hacer esto, hay otro método mejor (sugerido)</p>
+<h2>Property binding</h2>
+<p>El property binding permite vincular valores de propiedades html con valores de propiedades del archivo TypeScript.
+  Es muy parecida a la interpolación, pero la propiedad la envolveremos entre corchetes</p>
+  <img [src]="logo" alt="logo de Lego" [class.circular]="logoCircular" [hidden]="verImagen" />
+<button type="button" (click)="mostrarOcultarImagen()">Mostrar/ocultar imagen</button>
+<!-- 
+// Actividad: Incluir un input. Deshabilitarlo/habilitarlo al pulsar un botón
+// Actividad: Crearse una clase css que ponga una imagen circular
+// Al pulsar un botón, poner todas las imágenes de la página circulares -->
+
+<hr>
+
+<input type="text" [disabled]="input">
+<button type="button" (click)="habilitarInput()">Habilitar/Deshabilitar input</button>
+<hr>
+
+<img src="../../../assets/redpandas.jpg" alt="" [class.circular]="logoCircular">
+<button type="button" (click)="darFormatoCircular()">Poner/Quitar forma circular a las imágenes</button>
+
+<hr>
+
+<h2>Binding de doble vía</h2>
+<p>Hasta ahora hemos conseguido conseguir una interactividad interesante. Gracias a los eventos
+  cambiamos valores del TypeScript del componente para transformar la vista html. Podemós ir más allá
+  Vamos a suponer que queremos que, en aquellos elementos editables, cuando escribamos, sin programar
+  nada, queremos una respuesta determinada de la web. Eso se consigue con el binding de doble vía.
+  Esto es posible gracias a algo que Angular tiene y que se llama ngModel
+</p>
+<input type="text" [(ngModel)]="texto">
+<p>{{texto}}</p>
+
+<hr>
+<!-- 
+// Actividad. Añadir dos inputs, uno para el nombre y otro para el apellido
+  // Conforme vayamos escribiendo en ambos, en un párrafo aparecerán nombre y apellidos juntos
+
+  // Actividad. Añadir un input para introducir una calificación del 1 al 10
+  // Añadir dos párrafos. Uno con el texto "Aprobado", otro con el texto "Suspenso"
+  // Mostrar el párrafo correspondiente según la nota -->
+<p>Por favor, introduzca nombre y apellidos: </p>
+  <input type="text" [(ngModel)]="name">
+  <input type="text" [(ngModel)]="lastname">
+<p>{{name + " " + lastname}}</p>
+
+<br>
+<p>Por favor, puntua mi outfit</p>
+<input type="number" [(ngModel)]="score">
+<p>{{score && score >= 5 ? "aprobado" : score && "supendido"}}</p>
