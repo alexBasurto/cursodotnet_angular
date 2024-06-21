@@ -4,6 +4,12 @@ export interface IGiphyResponse {
     pagination: Pagination;
 }
 
+/* export interface IGiphyResponse { opción 2 (ver componente)
+    data:       IGiphy[];
+    meta?:       Meta;
+    pagination?: Pagination;
+} */
+
 export interface IGiphy {
     type:                       Type;
     id:                         string;

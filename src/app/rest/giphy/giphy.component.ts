@@ -11,7 +11,8 @@ export class GiphyComponent {
   txtBuscar: string = '';
   limite: number = 10;
   gifsResponse: IGiphyResponse = {} as IGiphyResponse;
-  gifs: IGiphy[] = [];
+  // gifsResponse: IGiphyResponse = { data: [] as IGiphy[] }; opción 2 (ver interfaces)
+  gifs: IGiphy[] = [] as IGiphy[];
   mostrarError = false;
 
   constructor(private giphyService: GiphyService) { }
